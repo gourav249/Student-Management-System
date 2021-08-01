@@ -16,14 +16,14 @@ import { Autocomplete } from "@material-ui/lab";
 import useCountry from "../Hooks/useCountry";
 import { DropzoneArea } from "material-ui-dropzone";
 import { useState } from "react";
+import { Send } from "@material-ui/icons";
 
 const useStyles = makeStyles((theme) => ({
   formControl: {
-    margin: theme.spacing(1),
-    minWidth: 120,
+    marginTop: theme.spacing(5),
   },
-  selectEmpty: {
-    marginTop: theme.spacing(2),
+  card: {
+    margin: theme.spacing(5),
   },
 }));
 
@@ -61,10 +61,11 @@ const AddStudentDetails = () => {
     <div>
       <Container component="main" maxWidth="sm">
         <CssBaseline />
-        <Card>
-          <CardContent>
-            <div>
-              <form onSubmit={handleSubmit}>
+
+        <div className={classes.formControl}>
+          <form onSubmit={handleSubmit}>
+            <Card className={classes.card}>
+              <CardContent>
                 <Grid container spacing={2}>
                   <Grid item xs={12}>
                     <TextField
@@ -74,7 +75,6 @@ const AddStudentDetails = () => {
                       fullWidth
                       id="studentname"
                       label="Student Name"
-                      autoFocus
                       value={name}
                       onChange={(e) => setName(e.target.value)}
                     />
@@ -110,22 +110,21 @@ const AddStudentDetails = () => {
                       autoComplete="Student D.O.B"
                       name="Student D.O.B"
                       variant="outlined"
+                      type="date"
                       fullWidth
                       id="studentDOB"
-                      label="Student D.O.B"
                       value={dateOfBirth}
                       onChange={(e) => setDateOfBirth(e.target.value)}
                     />
                   </Grid>
                   <Grid item xs={12}>
-                    <FormControl
-                      variant="outlined"
-                      className={classes.formControl}
-                      value={gender}
-                      onChange={(e) => setGender(e.target.value)}
-                    >
+                    <FormControl variant="outlined" fullWidth>
                       <InputLabel>Gender</InputLabel>
-                      <Select label="Age">
+                      <Select
+                        label="Gender"
+                        value={gender}
+                        onChange={(e) => setGender(e.target.value)}
+                      >
                         <MenuItem value="">
                           <em>None</em>
                         </MenuItem>
@@ -136,7 +135,7 @@ const AddStudentDetails = () => {
                   </Grid>
                   <Grid item xs={12}>
                     <Autocomplete
-                      id="combo-box-demo"
+                      id="country"
                       options={countryList}
                       getOptionLabel={(option) => option.name}
                       onChange={(e, value) => setCountry(value)}
@@ -146,7 +145,7 @@ const AddStudentDetails = () => {
                       renderInput={(params) => (
                         <TextField
                           {...params}
-                          label="Combo box"
+                          label="Select Country"
                           variant="outlined"
                         />
                       )}
@@ -154,8 +153,10 @@ const AddStudentDetails = () => {
                   </Grid>
                   <Grid item xs={12}>
                     <DropzoneArea
-                      dropzoneText={`Please Upload Hotel Images `}
+                      dropzoneText={`Please Upload Student Images `}
                       filesLimit={10}
+                      acceptedFiles={["image/jpeg", "image/png", "image/bmp"]}
+                      showPreviews={true}
                       onChange={(file) => handleImages(file)}
                     />
                   </Grid>
@@ -172,6 +173,7 @@ const AddStudentDetails = () => {
                         type="submit"
                         variant="contained"
                         color="primary"
+                        endIcon={<Send />}
                         style={{
                           width: "50%",
                           margin: "0 auto",
@@ -182,10 +184,10 @@ const AddStudentDetails = () => {
                     </div>
                   </Grid>
                 </Grid>
-              </form>
-            </div>
-          </CardContent>
-        </Card>
+              </CardContent>
+            </Card>
+          </form>
+        </div>
       </Container>
     </div>
   );
