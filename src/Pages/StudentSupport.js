@@ -85,7 +85,7 @@ const StudentSupport = () => {
                       dropzoneText={`Please Upload Support Description `}
                       filesLimit={10}
                       acceptedFiles={["image/jpeg", "image/png", "image/bmp"]}
-                      showPreviews={true}
+                      // showPreviews={true}
                       onChange={(file) => handleImages(file)}
                     />
                   </Grid>

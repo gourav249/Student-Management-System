@@ -53,10 +53,10 @@ const AddStudentDetails = () => {
     } catch (error) {}
   };
 
-  const handleImages = async (file) => {
+  const handleImages = async (e) => {
     try {
-      const arr = file;
-      setStudentPhoto(arr);
+      const targetFile = e.target.files[0];
+      setStudentPhoto(targetFile);
     } catch (error) {}
   };
   return (
@@ -158,13 +158,13 @@ const AddStudentDetails = () => {
                       dropzoneText={`Please Upload Student Images `}
                       filesLimit={10}
                       acceptedFiles={["image/jpeg", "image/png", "image/bmp"]}
-                      showPreviews={true}
+                      // showPreviews={true}
                       cancelButtonText={"cancel"}
                       submitButtonText={"submit"}
                       maxFileSize={100000000}
                       showFileNamesInPreview={true}
                       open={imageOpen}
-                      onChange={(file) => handleImages(file)}
+                      onChange={(e) => handleImages(e)}
                       onSave={(file) => {
                         setImageOpen(false);
                       }}
