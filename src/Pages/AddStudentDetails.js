@@ -21,10 +21,10 @@ import Navigation from "../Components/Navigation";
 
 const useStyles = makeStyles((theme) => ({
   formControl: {
-    marginTop: theme.spacing(5),
+    marginTop: theme.spacing(1),
   },
   card: {
-    margin: theme.spacing(5),
+    margin: theme.spacing(0),
   },
 }));
 
@@ -37,6 +37,7 @@ const AddStudentDetails = () => {
   const [dateOfBirth, setDateOfBirth] = useState("");
   const [gender, setGender] = useState("");
   const [country, setCountry] = useState("");
+  const [imageOpen, setImageOpen] = useState(false);
   const [studentPhoto, setStudentPhoto] = useState({});
 
   const handleSubmit = (e) => {
@@ -52,7 +53,7 @@ const AddStudentDetails = () => {
     } catch (error) {}
   };
 
-  const handleImages = (file) => {
+  const handleImages = async (file) => {
     try {
       const arr = file;
       setStudentPhoto(arr);
@@ -158,7 +159,15 @@ const AddStudentDetails = () => {
                       filesLimit={10}
                       acceptedFiles={["image/jpeg", "image/png", "image/bmp"]}
                       showPreviews={true}
+                      cancelButtonText={"cancel"}
+                      submitButtonText={"submit"}
+                      maxFileSize={100000000}
+                      showFileNamesInPreview={true}
+                      open={imageOpen}
                       onChange={(file) => handleImages(file)}
+                      onSave={(file) => {
+                        setImageOpen(false);
+                      }}
                     />
                   </Grid>
 

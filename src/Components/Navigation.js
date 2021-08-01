@@ -11,6 +11,16 @@ import ListItemIcon from "@material-ui/core/ListItemIcon";
 import ListItemText from "@material-ui/core/ListItemText";
 import InboxIcon from "@material-ui/icons/MoveToInbox";
 import MailIcon from "@material-ui/icons/Mail";
+import { Tooltip, Zoom } from "@material-ui/core";
+import {
+  AccountCircle,
+  ContactSupport,
+  DashboardOutlined,
+  ExitToApp,
+  PersonAdd,
+  Visibility,
+} from "@material-ui/icons";
+import { Link, useHistory } from "react-router-dom";
 
 const drawerWidth = 240;
 
@@ -29,6 +39,9 @@ const useStyles = makeStyles((theme) => ({
   drawerPaper: {
     width: drawerWidth,
   },
+  sidebar: {
+    backgroundColor: theme.palette.background.paper,
+  },
   // necessary for content to be below app bar
   toolbar: theme.mixins.toolbar,
   content: {
@@ -40,13 +53,19 @@ const useStyles = makeStyles((theme) => ({
 
 const Navigation = ({ children }) => {
   const classes = useStyles();
+  const history = useHistory();
+  const handleSignOut = async () => {
+    try {
+      history.push("/");
+    } catch (error) {}
+  };
   return (
     <div className={classes.root}>
       <CssBaseline />
       <AppBar position="fixed" className={classes.appBar}>
         <Toolbar>
           <Typography variant="h6" noWrap>
-            Permanent drawer
+            Student Management System
           </Typography>
         </Toolbar>
       </AppBar>
@@ -60,26 +79,92 @@ const Navigation = ({ children }) => {
       >
         <div className={classes.toolbar} />
         <Divider />
-        <List>
-          {["Inbox", "Starred", "Send email", "Drafts"].map((text, index) => (
-            <ListItem button key={text}>
+        <List component="nav" className={classes.sidebar}>
+          <Tooltip
+            title="Dashboard"
+            TransitionComponent={Zoom}
+            placement="start-top"
+            TransitionProps={{ timeout: 600 }}
+          >
+            <ListItem button component={Link} to="/StudentDashboard">
               <ListItemIcon>
-                {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
+                <DashboardOutlined />
               </ListItemIcon>
-              <ListItemText primary={text} />
+              <ListItemText primary={"Dashboard"} />
             </ListItem>
-          ))}
+          </Tooltip>
+
+          <Tooltip
+            title="Add Details"
+            TransitionComponent={Zoom}
+            placement="start-top"
+            TransitionProps={{ timeout: 600 }}
+          >
+            <ListItem button component={Link} to="/AddStudentDetails">
+              <ListItemIcon>
+                <PersonAdd />
+              </ListItemIcon>
+              <ListItemText primary={"Add Details"} />
+            </ListItem>
+          </Tooltip>
+
+          <Tooltip
+            title="View Details"
+            TransitionComponent={Zoom}
+            placement="start-top"
+            TransitionProps={{ timeout: 600 }}
+          >
+            <ListItem button component={Link} to="/EditStudentDetails">
+              <ListItemIcon>
+                <Visibility />
+              </ListItemIcon>
+              <ListItemText primary={"View Details"} />
+            </ListItem>
+          </Tooltip>
+
+          <Tooltip
+            title="Support"
+            TransitionComponent={Zoom}
+            placement="start-top"
+            TransitionProps={{ timeout: 600 }}
+          >
+            <ListItem button component={Link} to="/StudentSupport">
+              <ListItemIcon>
+                <ContactSupport />
+              </ListItemIcon>
+              <ListItemText primary={"Support"} />
+            </ListItem>
+          </Tooltip>
+
+          <Tooltip
+            title="View Profile"
+            TransitionComponent={Zoom}
+            placement="start-top"
+            TransitionProps={{ timeout: 600 }}
+          >
+            <ListItem button component={Link} to="/StudentProfile">
+              <ListItemIcon>
+                <AccountCircle />
+              </ListItemIcon>
+              <ListItemText primary={"Profile"} />
+            </ListItem>
+          </Tooltip>
         </List>
         <Divider />
-        <List>
-          {["All mail", "Trash", "Spam"].map((text, index) => (
-            <ListItem button key={text}>
+        <List component="nav" className={classes.sidebar}>
+          <Tooltip
+            title="logout"
+            TransitionComponent={Zoom}
+            placement="start-top"
+            TransitionProps={{ timeout: 600 }}
+          >
+            <ListItem button onClick={handleSignOut}>
               <ListItemIcon>
-                {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
+                <ExitToApp />
               </ListItemIcon>
-              <ListItemText primary={text} />
+              <ListItemText primary={"logout"} />
             </ListItem>
-          ))}
+          </Tooltip>
         </List>
       </Drawer>
       <main className={classes.content}>

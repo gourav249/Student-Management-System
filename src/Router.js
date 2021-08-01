@@ -1,9 +1,11 @@
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import Navigation from "./Components/Navigation";
+import { StudentDashboard } from "./Pages";
 import AddStudentDetails from "./Pages/AddStudentDetails";
 import EditStudentDetails from "./Pages/EditStudentDetails";
 import ForgetPassword from "./Pages/ForgetPassword";
 import Login from "./Pages/Login";
+import StudentProfile from "./Pages/StudentProfile";
 import StudentSupport from "./Pages/StudentSupport";
 
 const Router = () => {
@@ -20,6 +22,8 @@ const Router = () => {
           component={EditStudentDetails}
         />
         <Route exact path="/AddStudentDetails" component={AddStudentDetails} />
+        <Route exact path="/StudentDashboard" component={StudentDashboard} />
+        <Route exact path="/StudentProfile" component={StudentProfile} />
       </Switch>
     </BrowserRouter>
   );
