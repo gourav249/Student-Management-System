@@ -1,13 +1,7 @@
-import AddStudentDetails from "./Pages/AddStudentDetails";
-import EditStudentDetails from "./Pages/EditStudentDetails";
+import Router from "./Router";
 
 function App() {
-  return (
-    <div>
-      {/* <AddStudentDetails /> */}
-      <EditStudentDetails />
-    </div>
-  );
+  return <Router />;
 }
 
 export default App;

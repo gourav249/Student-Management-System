@@ -1,12 +1,13 @@
 import { Card, Container, CssBaseline, makeStyles } from "@material-ui/core";
 import MaterialTable from "material-table";
+import Navigation from "../Components/Navigation";
 
 const useStyles = makeStyles((theme) => ({
   formControl: {
-    marginTop: theme.spacing(4),
+    marginTop: theme.spacing(0.5),
   },
   card: {
-    margin: theme.spacing(1),
+    margin: theme.spacing(0),
   },
 }));
 const EditStudentDetails = () => {
@@ -18,7 +19,7 @@ const EditStudentDetails = () => {
     } catch (error) {}
   };
   return (
-    <div>
+    <Navigation>
       <Container component="main" maxWidth="lg">
         <CssBaseline />
 
@@ -86,7 +87,7 @@ const EditStudentDetails = () => {
           </form>
         </div>
       </Container>
-    </div>
+    </Navigation>
   );
 };
 

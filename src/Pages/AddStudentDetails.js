@@ -17,6 +17,7 @@ import useCountry from "../Hooks/useCountry";
 import { DropzoneArea } from "material-ui-dropzone";
 import { useState } from "react";
 import { Send } from "@material-ui/icons";
+import Navigation from "../Components/Navigation";
 
 const useStyles = makeStyles((theme) => ({
   formControl: {
@@ -58,7 +59,7 @@ const AddStudentDetails = () => {
     } catch (error) {}
   };
   return (
-    <div>
+    <Navigation>
       <Container component="main" maxWidth="sm">
         <CssBaseline />
 
@@ -189,7 +190,7 @@ const AddStudentDetails = () => {
           </form>
         </div>
       </Container>
-    </div>
+    </Navigation>
   );
 };
 
