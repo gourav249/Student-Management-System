@@ -41,6 +41,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 const Login = () => {
   const classes = useStyles();
+  const history = useHistory();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
@@ -119,6 +120,8 @@ const Login = () => {
               variant="contained"
               color="primary"
               className={classes.submit}
+              component={Link}
+              to="/StudentDashboard"
             >
               Sign In
             </Button>

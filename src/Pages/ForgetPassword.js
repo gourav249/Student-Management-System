@@ -8,6 +8,7 @@ import {
   makeStyles,
 } from "@material-ui/core";
 import { LockOutlined } from "@material-ui/icons";
+import { useState } from "react";
 import { Link, useHistory } from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
@@ -31,6 +32,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 const ForgetPassword = () => {
   const classes = useStyles();
+  const [newEmail, setNewEmail] = useState("");
   const handelSubmit = (e) => {
     try {
       e.preventdefault();
@@ -58,10 +60,10 @@ const ForgetPassword = () => {
               name="email"
               autoComplete="email"
               autoFocus
-              // value={newEmail}
-              // onChange={(e) => {
-              //   setNewEmail(e.target.value);
-              // }}
+              value={newEmail}
+              onChange={(e) => {
+                setNewEmail(e.target.value);
+              }}
             />
 
             <Button
@@ -74,7 +76,7 @@ const ForgetPassword = () => {
               Get Verification Link
             </Button>
 
-            <Button component={Link} to="/Login">
+            <Button component={Link} to="/">
               Go Back
             </Button>
           </form>
