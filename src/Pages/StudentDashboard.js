@@ -125,7 +125,7 @@ const StudentDashboard = () => {
                 options={optionsBar}
                 series={seriesBar}
                 type="bar"
-                height={350}
+                height={245}
               />
             </CardContent>
           </Card>
